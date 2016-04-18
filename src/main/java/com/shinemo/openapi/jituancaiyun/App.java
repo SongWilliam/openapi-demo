@@ -3,13 +3,14 @@ package com.shinemo.openapi.jituancaiyun;
 import java.util.Timer;
 
 import net.sf.json.JSONObject;
-
-import org.apache.http.HttpStatus;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 import com.shinemo.openapi.jituancaiyun.api.AccessTokenVisitor;
 import com.shinemo.openapi.jituancaiyun.api.Apis;
-import com.shinemo.openapi.jituancaiyun.common.HttpClientUtils;
-import com.shinemo.openapi.jituancaiyun.common.HttpResult;
+import com.shinemo.openapi.jituancaiyun.common.HttpRequestHelper;
 import com.shinemo.openapi.jituancaiyun.common.JsonUtils;
 import com.shinemo.openapi.jituancaiyun.domain.UserInfoDTO;
 import com.shinemo.openapi.jituancaiyun.shedule.AccessTokenRefreshTask;
@@ -20,11 +21,11 @@ import com.shinemo.openapi.jituancaiyun.shedule.AccessTokenRefreshTask;
 public class App {
 
 	public static void main(String[] args) {
-		//accessToken定时刷新器
+		//accessToken定时刷新器,开启定时刷新全局使用
 		startRefreshAccessToken();
 		//集团彩云客户端登录token（h5应用集团彩云客户端会在业务url后拼接上token参数）
 		//例如：应用的url为 http://www.jituancaiyun.com 那么从集团彩云客户端点击上url后url会变成http://www.jituancaiyun.com?token=woshijituancaiyuntoken
-		String jituancaiyunToken = "";
+		String jituancaiyunToken = "token";
 		try {
 			UserInfoDTO userInfo = getUseInfoByToken(jituancaiyunToken);
 			//do somethime by userInfo
@@ -36,18 +37,30 @@ public class App {
 	
 	//例子1：根据集团彩云的登录token获取登录用户的uid和name;
 	public static UserInfoDTO getUseInfoByToken(String jituancaiyunToken) throws Exception{
-		HttpResult httpResult = HttpClientUtils.get(String.format(Apis.USERINFO_URL, jituancaiyunToken, AccessTokenVisitor.visitAccountToken()));
-		JSONObject jsonResult = JSONObject.fromObject(httpResult.getResult());
-		if(httpResult.getStatus() == HttpStatus.SC_OK && jsonResult.getInt("status")==0){
-			UserInfoDTO userInfo = JsonUtils.convertFrom(jsonResult.getString("data"), UserInfoDTO.class);
-			return userInfo;
-		}else if(4003 == jsonResult.getInt("status")){
-			//token失效，被动刷新token
-			AccessTokenVisitor.refresh();
-		}else{
-			//处理其他异常
+		ResponseBody body=null;
+		try{
+			Request httpRequest = new Request.Builder().url(String.format(Apis.USERINFO_URL, jituancaiyunToken, AccessTokenVisitor.visitAccountToken())).build();
+			OkHttpClient client = HttpRequestHelper.getUnsafeOkHttpClient();
+			Response response = client.newCall(httpRequest).execute();
+			body=response.body();
+			JSONObject jr = JSONObject.fromObject(body.string());
+			if(response.isSuccessful() && jr.getInt("status")==0){
+				UserInfoDTO userInfo = JsonUtils.convertFrom(jr.getString("data"), UserInfoDTO.class);
+				return userInfo;
+			}else if(4003 == jr.getInt("status")){
+				//token失效，被动刷新token
+				AccessTokenVisitor.refresh();
+			}else{
+				//handle
+			}
+		}catch(Exception e){
+			//handle
+		}finally{
+			if(body!=null){
+                body.close();
+            }
 		}
-		throw new RuntimeException("get userinfo failed!");
+		return null;
 	}
 
 	//accessToken 定时刷新器

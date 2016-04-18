@@ -6,5 +6,5 @@ public class Constants {
 	public static final String appId = "12345678";
 	
 	//替换成你自己的appSecret
-	public static final String appSecret = "1234567890123456";
+	public static final String appSecret = "34567898987665";
 }

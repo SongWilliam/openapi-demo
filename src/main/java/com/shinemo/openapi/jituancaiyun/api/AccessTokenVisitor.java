@@ -1,14 +1,18 @@
 package com.shinemo.openapi.jituancaiyun.api;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 import net.sf.json.JSONObject;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 import org.apache.http.HttpStatus;
 
-import com.shinemo.openapi.jituancaiyun.common.HttpClientUtils;
-import com.shinemo.openapi.jituancaiyun.common.HttpResult;
+import com.shinemo.openapi.jituancaiyun.common.HttpRequestHelper;
 import com.shinemo.openapi.jituancaiyun.common.JsonUtils;
 import com.shinemo.openapi.jituancaiyun.domain.AccessTokenDTO;
 import com.shinemo.openapi.jituancaiyun.domain.Constants;
@@ -23,12 +27,16 @@ import com.shinemo.openapi.jituancaiyun.domain.Constants;
 public class AccessTokenVisitor {
 
 	
-	private static final ConcurrentHashMap<String, AccessTokenDTO> ACCESSTOKENCACHE = new ConcurrentHashMap<String, AccessTokenDTO>();
+	private static ConcurrentHashMap<String, AccessTokenDTO> ACCESSTOKENCACHE = new ConcurrentHashMap<String, AccessTokenDTO>();
 	
 	private static final String ACCESSTOKEN_KEY = "openapi_access_token";
 
 	public static String visitAccountToken() {
-		Objects.requireNonNull(ACCESSTOKENCACHE.get(ACCESSTOKEN_KEY), "accesstoken is null");
+		try{
+			Objects.requireNonNull(ACCESSTOKENCACHE.get(ACCESSTOKEN_KEY), "accesstoken is null");
+		}catch(NullPointerException ne){
+			refresh();
+		}
 		return ACCESSTOKENCACHE.get(ACCESSTOKEN_KEY).getAccessToken();
 	}
 	
@@ -38,18 +46,30 @@ public class AccessTokenVisitor {
 
 	public static Boolean refresh() {
 		synchronized (AccessTokenVisitor.class) {
-			HttpResult result = HttpClientUtils.get(String.format(Apis.ACCESSTOKEN_URL, Constants.appId, Constants.appSecret));
-			if(result.getStatus() == HttpStatus.SC_OK && JSONObject.fromObject(result.getResult()).getInt("status")==0){
-				try {
-					AccessTokenDTO accessToken = JsonUtils.convertFrom(result.getResult(), AccessTokenDTO.class);
+			ResponseBody body=null;
+			try {
+				Request httpRequest = new Request.Builder().url(String.format(Apis.ACCESSTOKEN_URL, Constants.appId, Constants.appSecret)).build();
+				OkHttpClient client = HttpRequestHelper.getUnsafeOkHttpClient();
+				Response response = client.newCall(httpRequest).execute();
+				body=response.body();
+				JSONObject jr = JSONObject.fromObject(body.string());
+				if(response.isSuccessful() && jr.getInt("status")==0){
+					AccessTokenDTO accessToken = JsonUtils.convertFrom(jr.getString("data"), AccessTokenDTO.class);
 					initAccessToken(accessToken);
+					System.out.println(visitAccountToken());
 					return true;
-				} catch (Exception e) {
-					handleExceltion(e);
+				}else{
+					//handle
 				}
-			}else{
-				handleStatusError(result);
-			}
+	        } catch (IOException e) {
+	           //handle
+	        } catch (Exception e) {
+	        	//handle
+			} finally{
+	            if(body!=null){
+	                body.close();
+	            }
+	        }
 		}
 		return false;
 	}
@@ -58,7 +78,4 @@ public class AccessTokenVisitor {
 		//handle exception
 	}
 	
-	public static void handleStatusError(HttpResult result){
-		
-	}
 }
