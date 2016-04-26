@@ -15,10 +15,10 @@ import com.shinemo.openapi.jituancaiyun.common.JsonUtils;
 import com.shinemo.openapi.jituancaiyun.domain.UserInfoDTO;
 import com.shinemo.openapi.jituancaiyun.shedule.AccessTokenRefreshTask;
 /**
- * 集团彩云开放平台demo
+ * 集团彩云开放平台demo（for okhttps）
  *
  */
-public class App {
+public class AppUseOKHttp {
 
 	public static void main(String[] args) {
 		//accessToken定时刷新器,开启定时刷新全局使用

@@ -10,8 +10,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-import org.apache.http.HttpStatus;
-
 import com.shinemo.openapi.jituancaiyun.common.HttpRequestHelper;
 import com.shinemo.openapi.jituancaiyun.common.JsonUtils;
 import com.shinemo.openapi.jituancaiyun.domain.AccessTokenDTO;
