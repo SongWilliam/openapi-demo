@@ -13,11 +13,15 @@ import com.shinemo.openapi.java.sdk.response.GetUserInfoByTokenResponse;
 public class UserInfoDemo {
 
     public static void main(String[] args){
-        GetUserInfoByTokenRequest request = new GetUserInfoByTokenRequest("3327d6bf20d1a08ba6afc294862312fd","3327d6bf20d1a08ba6afc294862312fd");
+        GetUserInfoByTokenRequest request = new GetUserInfoByTokenRequest("这里填上客户端传来的token"
+                ,"这里填上accessToken");
         OpenapiClient client = OpenapiClientFactory.getClient();
         try {
+            for(int i=0; i<100; ++i){
                 GetUserInfoByTokenResponse response = client.execute(request);
-                System.out.println(response.toString());
+                System.out.println("i"+i+":"+response.toString());
+            }
+
         } catch (OpenapiException e) {
             // TODO handle
         } catch (Exception e){
