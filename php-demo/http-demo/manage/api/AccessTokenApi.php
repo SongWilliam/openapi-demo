@@ -4,12 +4,7 @@ require_once(__DIR__ . "/../util/HttpUtil.php");
 require_once(__DIR__ . "/../util/CacheUtil.php");
 require_once(__DIR__ . "/../util/LogUtil.php");
 require_once(__DIR__ . "/../../config.php");
-/**
- * Created by PhpStorm.
- * User: david
- * Date: 16/5/14
- * Time: 16:23
- */
+
 class AccessTokenApi
 {
 
