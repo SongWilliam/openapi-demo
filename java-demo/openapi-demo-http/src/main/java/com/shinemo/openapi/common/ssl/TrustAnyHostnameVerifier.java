@@ -1,4 +1,4 @@
-package main.java.com.shinemo.openapi.common.ssl;
+package com.shinemo.openapi.common.ssl;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;

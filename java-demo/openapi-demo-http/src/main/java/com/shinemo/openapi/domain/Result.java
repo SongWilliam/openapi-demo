@@ -1,4 +1,4 @@
-package main.java.com.shinemo.openapi.domain;
+package com.shinemo.openapi.domain;
 
 import java.io.Serializable;
 

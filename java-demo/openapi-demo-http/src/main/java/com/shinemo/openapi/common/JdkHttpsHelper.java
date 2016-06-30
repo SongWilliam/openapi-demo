@@ -1,4 +1,4 @@
-package main.java.com.shinemo.openapi.common;
+package com.shinemo.openapi.common;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -8,8 +8,8 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import main.java.com.shinemo.openapi.common.ssl.SSLSocketFactoryHolder;
-import main.java.com.shinemo.openapi.common.ssl.TrustAnyHostnameVerifier;
+import com.shinemo.openapi.common.ssl.SSLSocketFactoryHolder;
+import com.shinemo.openapi.common.ssl.TrustAnyHostnameVerifier;
 import com.shinemo.openapi.domain.Result;
 
 /**

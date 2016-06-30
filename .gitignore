@@ -8,8 +8,8 @@ target/*
 .DS_Store
 
 /target
-openapi-demo-sdk/.settings/*
-openapi-demo-http/target/*
-
+java-demo/openapi-demo-sdk/.settings/*
+java-demo/openapi-demo-http/target/*
+java-demo/.idea/*
 
 tree

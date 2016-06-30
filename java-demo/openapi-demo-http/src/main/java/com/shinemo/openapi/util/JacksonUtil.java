@@ -1,4 +1,4 @@
-package main.java.com.shinemo.openapi.util;
+package com.shinemo.openapi.util;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.DeserializationConfig.Feature;
@@ -60,7 +60,7 @@ public class JacksonUtil {
 	 */
 	public static <T> T convertFrom(String jsonStr, Class<T> clazz)
 			throws Exception {
-		if (jsonStr == null || jsonStr.isEmpty()) {
+		if (jsonStr == null ) {
 			jsonStr = "{}"; // to avoid JSON error
 		}
 

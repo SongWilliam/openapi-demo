@@ -1,4 +1,4 @@
-package main.java.com.shinemo.openapi.common.ssl;
+package com.shinemo.openapi.common.ssl;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -16,10 +16,14 @@ public class SSLSocketFactoryHolder {
         try {
             sslContext = SSLContext.getInstance("SSL");
             sslContext.init(null, new TrustManager[]{new TrustAnyTrustManager()}, new SecureRandom());
-        } catch (KeyManagementException | NoSuchAlgorithmException e) {
+            return sslContext.getSocketFactory();
+        } catch (KeyManagementException k)
+        {
+            throw new RuntimeException(k);
+        }catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
-        return sslContext.getSocketFactory();
+
 	}
 	
 }

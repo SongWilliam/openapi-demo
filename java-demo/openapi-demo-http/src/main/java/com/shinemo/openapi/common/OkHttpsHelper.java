@@ -1,7 +1,7 @@
-package main.java.com.shinemo.openapi.common;
+package com.shinemo.openapi.common;
 
-import main.java.com.shinemo.openapi.common.ssl.SSLSocketFactoryHolder;
-import main.java.com.shinemo.openapi.common.ssl.TrustAnyHostnameVerifier;
+import com.shinemo.openapi.common.ssl.SSLSocketFactoryHolder;
+import com.shinemo.openapi.common.ssl.TrustAnyHostnameVerifier;
 
 import okhttp3.OkHttpClient;
 
@@ -22,6 +22,11 @@ public class OkHttpsHelper {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public static void main(String[] args){
+		OkHttpClient okHttpsHelper = getHttpCLient();
+
 	}
 	
 }

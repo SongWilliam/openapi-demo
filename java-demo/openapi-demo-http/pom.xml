@@ -14,11 +14,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>com.squareup.okhttp3</groupId>
 			<artifactId>okhttp</artifactId>
 		</dependency>
@@ -43,9 +38,9 @@
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>net.sf.json-lib</groupId>
-			<artifactId>json-lib</artifactId>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>net.sf.json-lib</groupId>-->
+			<!--<artifactId>json-lib</artifactId>-->
+		<!--</dependency>-->
 	</dependencies>
 </project>

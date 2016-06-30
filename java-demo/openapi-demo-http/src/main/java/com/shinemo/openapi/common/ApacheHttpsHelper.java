@@ -1,4 +1,4 @@
-package main.java.com.shinemo.openapi.common;
+package com.shinemo.openapi.common;
 
 import java.nio.charset.Charset;
 import java.util.Map;
@@ -13,9 +13,9 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import main.java.com.shinemo.openapi.common.ssl.SSLConnectionSocketFactoryHolder;
+import com.shinemo.openapi.common.ssl.SSLConnectionSocketFactoryHolder;
 import com.shinemo.openapi.domain.Result;
-import main.java.com.shinemo.openapi.util.JacksonUtil;
+import com.shinemo.openapi.util.JacksonUtil;
 
 /**
  * 
