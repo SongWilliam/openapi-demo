@@ -1,6 +1,6 @@
 
-## 彩云开发者平台demo -- ShineMo [![Build Status](https://travis-ci.org/alibaba/RocketMQ.svg?branch=master)](https://travis-ci.org/alibaba/RocketMQ)
-[![Maven Central](https://img.shields.io/badge/maven--center-stable--version-green.svg)](http://search.maven.org/#search%7Cga%7C1%7Ccom.alibaba.rocketmq)
+## 彩云开发者平台demo -- ShineMo [![Build Status]()]
+[![Maven Central](https://img.shields.io/badge/maven--center-stable--version-green.svg)]()
 [![GitHub release](https://img.shields.io/badge/release-download-orange.svg)](https://github.com/jituancaiyun/openapi-demo)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 # 开始step by step
