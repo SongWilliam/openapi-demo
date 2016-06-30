@@ -1,7 +1,7 @@
 
 # 开始step by step
 
-## 1.注册成为彩云开发者([点我注册](https://open.jituancaiyun.com/developer/login.html))
+## 1.注册成为彩云开发者([点我注册](https://open.jituancaiyun.com/developer/register.html))
 
 _如下图所示，填写一个手机号设置一个密码即可立即成为彩云开发者_
 
