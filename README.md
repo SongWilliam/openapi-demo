@@ -1,4 +1,8 @@
 
+## 彩云开发者平台demo -- ShineMo
+[![Maven Central](https://img.shields.io/badge/maven--center-stable--version-green.svg)]()
+[![GitHub release](https://img.shields.io/badge/release-download-orange.svg)](https://github.com/jituancaiyun/openapi-demo)
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 # 开始step by step
 
 ## 1.注册成为彩云开发者([点我注册](https://open.jituancaiyun.com/developer/register.html))
