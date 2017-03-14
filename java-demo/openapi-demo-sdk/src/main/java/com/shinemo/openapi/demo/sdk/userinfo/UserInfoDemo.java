@@ -17,7 +17,7 @@ public class UserInfoDemo {
                 ,"这里填上accessToken");
         OpenapiClient client = OpenapiClientFactory.getClient();
         try {
-            for(int i=0; i<100; ++i){
+            for(int i=0; i<10; ++i){
                 GetUserInfoByTokenResponse response = client.execute(request);
                 System.out.println("i"+i+":"+response.toString());
             }

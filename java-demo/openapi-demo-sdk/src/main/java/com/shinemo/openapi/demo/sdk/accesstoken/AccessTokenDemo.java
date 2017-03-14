@@ -14,10 +14,9 @@ import com.shinemo.openapi.java.sdk.response.GetUserInfoByTokenResponse;
 public class AccessTokenDemo {
 
     public static void main(String[] args){
-        AccessTokenRequest request = new AccessTokenRequest("43243ewrwerwwerwerewerwerwerew243234","3327d6bf20d1dsfdsfsdfsdfdsfsdfdsfsdfsda08ba6afc294862312fd");
+        AccessTokenRequest request = new AccessTokenRequest("appId","appSecret");
         OpenapiClient client = OpenapiClientFactory.getClient();
         try {
-
                 AccessTokenResponse response = client.execute(request);
                 System.out.println(response.toString());
         } catch (OpenapiException e) {
