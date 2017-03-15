@@ -9,7 +9,7 @@ import com.shinemo.openapi.java.sdk.response.OpenAccountMsgResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OpenAccountMsg {
+public class OpenAccountMsgDemo {
 
     public static void main(String[] args) {
         List<String> receiversList = new ArrayList<String>();
