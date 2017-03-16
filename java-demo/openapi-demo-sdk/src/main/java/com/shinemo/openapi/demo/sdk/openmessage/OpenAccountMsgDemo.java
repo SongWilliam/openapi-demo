@@ -16,17 +16,17 @@ public class OpenAccountMsgDemo {
         receiversList.add("112093240");
         receiversList.add("11048352");
         // 发送文本消息
-        //OpenAccountMsgRequest request = new OpenAccountMsgRequest.OpenAccountMsgBuilder().textMsgBuilder("应用id", "消息内容", "消息接受者列表").build();
+        //textMsgBuilder(String appId:"应用id", String content:"消息内容", List<String> receivers:"消息接受者列表")
         OpenAccountMsgRequest request = new OpenAccountMsgRequest.OpenAccountMsgBuilder().textMsgBuilder("25575033", "你好", receiversList).build();
         // 发送图片消息
-        //OpenAccountMsgRequest request1 = new OpenAccountMsgRequest.OpenAccountMsgBuilder().picMsgBuilder("应用id", "图片url", "消息接受者列表").build();
+        //picMsgBuilder(String appId:"应用id", String picUrl:"图片url", List<String> receivers:"消息接受者列表")
         OpenAccountMsgRequest request1 = new OpenAccountMsgRequest.OpenAccountMsgBuilder().picMsgBuilder("25575033", "https://app-icon-qn.jituancaiyun.com/-34-1488450864594.jpg", receiversList).build();
         // 发送图文消息(富文本消息)
         List<OpenAccountMsgRequest.MsgBody.Article> articles =new ArrayList<OpenAccountMsgRequest.MsgBody.Article>();
-        //OpenAccountMsgRequest.MsgBody.Article article = new OpenAccountMsgRequest.MsgBody.Article("标题", "描述", "图片url", "点击图片跳转地址");
+        //Article article = new Article(String title:"标题", String description:"描述", String picUrl:"图片url", String url:"点击图片跳转地址");
         OpenAccountMsgRequest.MsgBody.Article article = new OpenAccountMsgRequest.MsgBody.Article("标题：测试", "描述：测试", "https://app-icon-qn.jituancaiyun.com/-34-1488450864594.jpg", "http://www.baidu.com");
         articles.add(article);articles.add(article);articles.add(article);articles.add(article);articles.add(article);articles.add(article);articles.add(article);
-        //OpenAccountMsgRequest request2 = new OpenAccountMsgRequest.OpenAccountMsgBuilder().newsMsgBuilder("应用id", "发送文章列表，单次最多发送4篇文章", "接受者列表").build();
+        //newsMsgBuilder(String appId:"应用id", List<MsgBody.Article> articles:"发送文章列表，单次最多发送4篇文章", List<String> receivers:"接受者列表")
         OpenAccountMsgRequest request2 = new OpenAccountMsgRequest.OpenAccountMsgBuilder().newsMsgBuilder("25575033", articles, receiversList).build();
 
         OpenapiClient client = OpenapiClientFactory.getClient();
